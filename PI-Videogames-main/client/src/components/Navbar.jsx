@@ -1,17 +1,26 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getAllGames } from '../redux/actions'
+import SearchBar from './SearchBar'
+import Style from './Styles/Navbar.module.css'
+
 
 const Navbar = () => {
-    return (
-        <div>
-            <h1>Soy el Navbar</h1>
 
-            <input></input>
-            <Link to='/home'>
-                <button>Home</button>
-            </Link>
-            <Link to='/game/create'>
-                <button>Create</button>
+    const dispatch = useDispatch()
+
+    function handleClick(e) {
+        e.preventDefault()
+        dispatch(getAllGames())
+    };
+
+    return (
+        <div className={Style.navbar}>
+            <button onClick={ e => handleClick(e)} className={Style.button}>RECARGAR</button>
+            <SearchBar />
+            <Link to='/create'>
+                <button className={Style.button}>CREAR</button>
             </Link>
         </div>
     )

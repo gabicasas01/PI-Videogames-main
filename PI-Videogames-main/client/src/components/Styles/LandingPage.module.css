@@ -1,0 +1,37 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: rgb(246, 246, 246);
+    gap: 0px;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: 
+      url('https://64.media.tumblr.com/f7a8ad71b4cfdee3db37ae553775033c/tumblr_mm2phoks3u1rj6f00o4_1280.gifv');
+      object-fit: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    height: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 90px 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #f1faee;
+    background-color: #2b2d42;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.button:hover{
+    height: 33px;
+    width: 105px;
+    background-color: #d90429;
+    font-size: 14px;
+}

@@ -18,9 +18,9 @@ videogameRouter.get('/', async (req, res) => {
       } else {
         res.status(200).send(videogamesTotal)
       }
-      
-    } catch (error) {
-      console.log('ESTE ES EL ERROR DEL GET:', error)
+    } 
+    catch (error) {
+        res.status(400).send({error: error.message})
     }
   });
 
@@ -50,9 +50,9 @@ videogameRouter.post('/', async (req, res) => {
       videogameCreated.addGenres(genreDb);
 
       res.send('Videojuego creado con exito')
-    } catch (error) {
-      console.log(error)
-      // res.status(400).send({error: error.message})
+    } 
+    catch (error) {
+      res.status(400).send({error: error.message})
     }
 });
 

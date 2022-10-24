@@ -1,0 +1,18 @@
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #EDF2F4;
+    gap: 0px;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}

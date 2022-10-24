@@ -41,7 +41,8 @@ const getApiInfo = async () => {
         platforms: game.platforms.map(p => p.platform.name),
         genres: game.genres.map(g => {
           return {
-            name: g.name          
+            id: g.id,         
+            name: g.name
           }
         })
       }
@@ -71,24 +72,31 @@ const getAllVideoGames = async () => {
 };
 
 const getDetail = async (id) => {
-  const apiDetail = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-  
-  //console.log('ESTO ES GET DETAIL: ', apiDetail.data)
+  try {
+    const apiDetail = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+    
+    if(apiDetail) {
+      const { name, description, released, background_image, rating, platforms, genres} = apiDetail.data
+      
+      const gameDetail = {
+        id,
+        name,
+        description,
+        released,
+        img: background_image,
+        rating,
+        platforms: platforms.map( p => p.platform.name),
+        genres: genres.map( g => g.name)
+      }
+      return gameDetail;
+    }
+  } catch (error) {
+      const dbVideogame = await getDbInfo()
 
-  const { name, description, released, background_image, rating, platforms, genres} = apiDetail.data
-
-  const gameDetail = {
-    id,
-    name,
-    description,
-    released,
-    img: background_image,
-    rating,
-    platforms: platforms.map( p => p.platform.name),
-    genres: genres.map( g => g.name)
+      let dbVideogameFiltrado = dbVideogame.find( el => el.id === id)
+      
+      return dbVideogameFiltrado;
   }
-
-  return gameDetail;
 }
 
 
