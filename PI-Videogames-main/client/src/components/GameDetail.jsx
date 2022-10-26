@@ -19,10 +19,8 @@ const GameDetail = (props) => {
 
     const Videogame = useSelector((state) => state.detail)
 
-
     return (
         <div>
-
             {
                 !Videogame ?
                 <Loading/> :
@@ -55,8 +53,6 @@ const GameDetail = (props) => {
                     <div className={Style.description} >
                         <p>{Videogame.description.replace(/<[^>]*>/g, '')}</p>
                     </div>
-
-
                 </div>
             }
         </div>

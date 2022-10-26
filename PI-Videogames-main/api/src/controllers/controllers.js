@@ -5,52 +5,39 @@ const {
 } = process.env;
 
 
+// TRAIGO LA INFO QUE NECESITO DE LA API
 const getApiInfo = async () => {
 
-    let page1 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-    .then (response => response.data.results)
-    .catch(error => error);
+    let api_games = [];
+    let apiURL = `https://api.rawg.io/api/games?key=${API_KEY}`;
+    let numberOfPages = 6;
 
-    let page2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
-    .then (response => response.data.results)
-    .catch(error => error);
+    for (let i = 0; i <= numberOfPages; i++) {
+        let pages = await axios.get(apiURL)
+        pages.data?.results.forEach(game => {
+            api_games.push({
+                id: game.id,
+                name: game.name,
+                img: game.background_image,
+                rating: game.rating,
+                released: game.released,
+                description: game.description,
+                platforms: game.platforms.map(p => p.platform.name),
+                genres: game.genres.map(g => {
+                  return {
+                    id: g.id,         
+                    name: g.name
+                  }
+                })
+            })
+        });
+        apiURL = pages.data.next;
+    }
 
-    let page3 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
-    .then (response => response.data.results)
-    .catch(error => error);
-
-    let page4 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
-    .then (response => response.data.results)
-    .catch(error => error);
-
-    let page5 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
-    .then (response => response.data.results)
-    .catch(error => error);
-
-
-    let total = page1.concat(page2, page3, page4, page5);
-
-    let api_games = total?.map(game => {
-      return {
-        id: game.id,
-        name: game.name,
-        img: game.background_image,
-        rating: game.rating,
-        released: game.released,
-        description: game.description,
-        platforms: game.platforms.map(p => p.platform.name),
-        genres: game.genres.map(g => {
-          return {
-            id: g.id,         
-            name: g.name
-          }
-        })
-      }
-    })
-  
     return api_games;
 };
 
+// TRAIGO LA INFO QUE NECESITO DEl MODELO VIDEOGAME INCLUYENDO LOS GENEROS CON LOS NAMES
 const getDbInfo = async () => {
   return await Videogame.findAll({
     include: {

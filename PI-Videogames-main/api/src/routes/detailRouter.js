@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {getDetail} = require('../controllers/controllers')
+const {getDetail, deleteGame} = require('../controllers/controllers')
 
 
 const detailRouter = Router();
@@ -12,5 +12,7 @@ detailRouter.get('/:id', async (req, res) => {
       res.status(200).json(videoGameDetail) :
       res.status(400).send('No se encontró el videojuego')
   })
+
+
 
   module.exports = detailRouter;

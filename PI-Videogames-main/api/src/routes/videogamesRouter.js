@@ -10,12 +10,17 @@ videogameRouter.get('/', async (req, res) => {
       let videogamesTotal = await getAllVideoGames();
     
       if(name) {
-        let videogameName = await videogamesTotal.filter( el => el.name.toLowerCase().includes(name.toLowerCase()))
+        let videogameName = videogamesTotal.filter( el => el.name.toLowerCase().includes(name.toLowerCase()))
     
-        videogameName.length ?
-        res.status(200).send(videogameName) :
-        res.status(404).send('No está el videojuego')
-      } else {
+          if(videogameName.length) {
+            let vgSlice = videogameName.slice(0, 15)
+            res.status(200).send(vgSlice)
+          }
+          else {
+            res.status(404).send('No está el videojuego')
+          }
+      } 
+      else {
         res.status(200).send(videogamesTotal)
       }
     } 
@@ -24,7 +29,7 @@ videogameRouter.get('/', async (req, res) => {
     }
   });
 
-
+// COMPRUEBO LOS DATOS QUE MANDAN POR BODY. USO METODO CREATE PARA CREAR UN VG EN MI MODELO. ASOCIO CON MODELO GENRES
 videogameRouter.post('/', async (req, res) => {
   const { name, description, rating, released, createdInDb, platforms, img, genres} = req.body;
   if(!name || !description || !platforms) return res.status(400).send('Falta alguno de los campos obligatorios')
@@ -32,7 +37,6 @@ videogameRouter.post('/', async (req, res) => {
   const findName = await Videogame.findAll({
     where: {name: name}
   })
-
   if(findName.length) return res.status(400).send('El nombre del juego está ocupado')
 
   try {
@@ -49,7 +53,7 @@ videogameRouter.post('/', async (req, res) => {
       let genreDb = await Genres.findAll({ where: { name: genres } });
       videogameCreated.addGenres(genreDb);
 
-      res.send('Videojuego creado con exito')
+      res.status(200).send('Videojuego creado con exito')
     } 
     catch (error) {
       res.status(400).send({error: error.message})

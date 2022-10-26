@@ -2,22 +2,22 @@
  function validate(input) {
     let errors = {}
     if (!input.name) {
-        errors.name = 'Name is required' 
+        errors.name = 'El campo nombre es requerido' 
     } 
     else if(!input.img){
-        errors.img = 'Image is required'
+        errors.img = 'El campo imagen es requerido'
     }
     else if (!input.rating || input.rating<0 || input.rating >5) {
-        errors.rating = 'Rating must be a nummber between 0-5'
+        errors.rating = 'Rating debe ser un entero entre 0-5'
     }
-    else if (input.platforms.length===0) {
-        errors.platforms = 'Platform is required'
+    else if (input.platforms.length === 0) {
+        errors.platforms = 'El campo plataformas es requerido'
     }
     else if (input.genres.length === 0){
-        errors.genres = 'Genre is required'
+        errors.genres = 'El campo géneros es requerido'
     }
     else if (!input.description){
-        errors.description = 'Description is required'
+        errors.description = 'El campo descripción es requerido'
     }
     return errors 
 }

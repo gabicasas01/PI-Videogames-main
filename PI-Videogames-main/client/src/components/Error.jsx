@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { resetError } from '../redux/actions'
+import Style from './Styles/Error.module.css'
 
 const Error = () => {
 
@@ -16,7 +17,7 @@ const Error = () => {
         <div>
             <h1>Error</h1>
             <Link to='/home'>
-                <button onClick={handlerRefresh} >Volver</button>
+                <button className={Style.button} onClick={handlerRefresh}>VOLVER</button>
             </Link>
         </div>
     )

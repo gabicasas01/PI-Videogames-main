@@ -33,22 +33,18 @@ const Form = () => {
     let handleSubmit = (e) => {
         e.preventDefault()
 
-        if (!input.name) { return alert('Name is required') }
-        if (input.img.length === 0) { return alert('Image is required') }
-        // if (!/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(input.released)) { return alert('Wrong released date format. Should be YYYY-MM-DD OR YYYY-M-D') }
-        if (!input.rating) { return alert('Rating is required') }
+        if (!input.name) { return alert('El campo nombre es requerido') }
+        if (input.img.length === 0) { return alert('El campo imagen es requerido') }
+        if (!input.rating) { return alert('El campo rating es requerido') }
         if (!/^(?:[1-9]\d{0,2}(?:,\d{3})*|0)(?:\.\d+)?$/.test(input.rating) ||
             input.rating < 0 || input.rating > 5) {
-            return alert('Wrong format for Rating. Should be a number between 0-5')
+            return alert('Error en el formato de rating. Debe ser un entero entre 0-5')
         }
-        if (input.platforms.length === 0) { return alert('Platform is required') }
-        if (input.genres.length === 0) { return alert('Genre is required') }
-
-        console.log(input)
+        if (input.platforms.length === 0) { return alert('El campo plataformas es requerido') }
+        if (input.genres.length === 0) { return alert('El campo géneros es requerido') }
 
         dispatch(postVideogame(input))
-        //dispatch(resetVideogames())
-        alert(`Videogame ${input.name} has been added`)
+        alert(`Tu videojuego ${input.name} se creo exitosamente`)
         setInput({ ...initialState })
         history.push('/home')
     }
