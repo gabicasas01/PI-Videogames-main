@@ -50,17 +50,31 @@ const Form = () => {
     }
 
     let handleGenres = (e) => {
-        setInput({
-            ...input,
-            genres: [...input.genres, e.target.value]
-        })
+        let value = input.genres.find(el => el === e.target.value)
+
+        if(value) {
+            console.log('EXISTE', value)
+        }
+        else {
+            setInput({
+                ...input,
+                genres: [...input.genres, e.target.value]
+            })
+        }
     }
 
     let handlePlatforms = (e) => {
-        setInput({
-            ...input,
-            platforms: [...input.platforms, e.target.value]
-        })
+        let value = input.platforms.find(el => el === e.target.value)
+        if(value) {
+            console.log('EXISTE', value)
+        }
+        else {
+                    setInput({
+                        ...input,
+                        platforms: [...input.platforms, e.target.value]
+                    })
+        }
+
     }
 
     let handleOnChange = (e) => {

@@ -116,6 +116,8 @@ export default function Home() {
                         vgPerPage={vgPerPage}
                         allGames={allGames}
                         paginado={paginado}
+                        currentPage={currentPage}
+                        setCurrentPage={setcurrentPage}
                     />
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './Styles/Paginado.module.css'
 
-export default function Paginado ({vgPerPage, allGames, paginado}) {
+export default function Paginado ({vgPerPage, allGames, paginado, currentPage, setCurrentPage}) {
     const pageNumbers = []
     let cantidadDePaginas = Math.ceil(allGames.length / vgPerPage)
 
@@ -9,8 +9,17 @@ export default function Paginado ({vgPerPage, allGames, paginado}) {
             pageNumbers.push(i)
     }
 
+
+    function handlePrevius () {
+        if(currentPage !== 1) {
+            setCurrentPage(state => state -1)
+        }
+    }
+
+
     return (
         <div>
+            <button onClick={handlePrevius}>PREVIUS</button>
             <nav>
                 <ul className={Style.ul_paginado}>
                     { pageNumbers &&
