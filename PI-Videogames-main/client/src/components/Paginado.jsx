@@ -16,7 +16,7 @@ export default function Paginado ({vgPerPage, allGames, paginado, currentPage, s
                     { pageNumbers &&
                         pageNumbers.map(number => (
                             <li className={Style.li_paginado} key={number}>
-                                <a className={Style.a_paginado} onClick={() => paginado(number)} href="#">{number}</a>
+                                <a className={Style.a_paginado} onClick={() => paginado(number)} href="/">{number}</a>
                             </li>
                         ))
                     }

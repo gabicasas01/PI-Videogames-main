@@ -5,7 +5,8 @@ import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import GameDetail from './components/GameDetail';
 import Form from './components/Form';
-
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   return (
