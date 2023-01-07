@@ -9,17 +9,8 @@ export default function Paginado ({vgPerPage, allGames, paginado, currentPage, s
             pageNumbers.push(i)
     }
 
-
-    function handlePrevius () {
-        if(currentPage !== 1) {
-            setCurrentPage(state => state -1)
-        }
-    }
-
-
     return (
         <div>
-            <button onClick={handlePrevius}>PREVIUS</button>
             <nav>
                 <ul className={Style.ul_paginado}>
                     { pageNumbers &&

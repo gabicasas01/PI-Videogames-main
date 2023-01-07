@@ -18,7 +18,7 @@ export default function Home() {
 
     const [currentPage, setcurrentPage] = useState(1)
     const [vgPerPage] = useState(15)
-    const [order, setOrder] = useState('')
+    const [setOrder] = useState('')
 
     const indexOfLastVg = currentPage * vgPerPage
     const indexOfFirstVg = indexOfLastVg - vgPerPage
